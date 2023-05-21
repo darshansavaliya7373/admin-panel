@@ -1,0 +1,94 @@
+<%- include('header') %>
+
+    <main id="main" class="main">
+
+      <div class="pagetitle">
+        <h1>Form Elements</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item">Forms</li>
+            <li class="breadcrumb-item active">Elements</li>
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+    
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-7">
+            <%if(flash.success && flash.success.length>0){%>
+              <div class="alert p-2 d-flex text-center px-4 border-success text-success fw-3" style="font-weight: 700; width: fit-content;"><%=flash.success%></div>
+            <%}%>
+    
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">extracategory Elements</h5>
+    
+                <!-- General Form Elements -->
+                <form method="post" action="/extracategory/add_category_post">
+                  <div class="row mb-3">
+                    <label for="inputNumber" class="col-sm-3 col-form-label "> select category</label>
+                    <div class="col-sm-10">
+                        <select name="categoryid" onchange="subdatas()" id="categoryid" class="form-control" id="category">
+                            <option value="" hidden>select category</option>
+                            <%for(var i of data){%>
+                            <option value="<%=i.id%>"><%=i.category%></option>
+                            <%}%>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="inputNumber" class="col-sm-3 col-form-label ">select subcategory</label>
+                    <div class="col-sm-10">
+                        <select name="subcategoryid" id="subcategory" class="form-control" id="category">
+                            <option value="">select</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="inputNumber" class="col-sm-3 col-form-label "> extracategory</label>
+                    <div class="col-sm-10">
+                      <input required type="text" name="extracategory" class="form-control" id="category"  placeholder="Enter category">
+                    </div>
+                  </div>
+    
+                  <div class="row mb-3">
+    
+                    <div class="col-sm-10">
+                      <button type="submit"  class="btn btn-primary">Submit </button>
+                    </div>
+                  </div>
+    
+                </form><!-- End General Form Elements -->
+    
+              </div>
+            </div>
+    
+          </div>
+    
+         
+        </div>
+      </section>
+    
+    </main><!-- End #main -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <script>
+        function subdatas(){
+
+            var cateid=document.getElementById('categoryid').value
+            $.ajax({
+                url:'/extracategory/subdata',
+                type:'post',
+                data:{
+                    'cateid': cateid
+                },
+                success: function(data){
+                    $("#subcategory").html(data)
+                }
+            })
+
+        }
+    </script>
+    
+    <%- include('footer') %>

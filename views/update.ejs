@@ -1,0 +1,135 @@
+<%- include('header') %>
+
+
+<main id="main" class="main">
+
+ <!-- End Page Title -->
+
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-7">
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">General Form Elements</h5>
+
+            <!-- General Form Elements -->
+            <form method="post" action="/editData" enctype="multipart/form-data">
+              <input type="hidden" value="<%= data.id %>" name="Id">
+              <div class="row mb-3">
+                <label for="inputNumber" class="col-sm-2 col-form-label">first name</label>
+                <div class="col-sm-10">
+                  <input type="text" name="name" value="<%=data.name%>" class="form-control">
+                </div>
+              </div>
+            
+              <div class="row mb-3">
+                <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                  <input type="email" name="email" value="<%=data.email%>" class="form-control">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10">
+                  <input type="password" value="<%=data.password%>" class="form-control">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
+                <div class="col-sm-10">
+                  <input class="form-control" type="file" name="avatar" id="formFile">
+                  <img src="<%=data.avatar%>" height="100" style="margin-top: 10px;" alt="">
+                </div>
+              </div>
+             
+
+             
+              <fieldset class="row mb-3">
+                <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+                <div class="col-sm-10" style="display: flex;">
+                  <div class="form-check">
+                    <input type="radio" name="gender" id="gender" value="male" <% if(data.gender == "male") { %> <%= "checked" %> <% } %> />
+                    <label class="form-check-label" for="gridRadios1">
+                      male
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input type="radio" name="gender" id="gender" value="female" <% if(data.gender == "female") { %> <%= "checked" %> <% } %> /> <label class="form-check-label" for="gridRadios2">
+                      female
+                    </label>
+                  </div>
+                 
+                </div>
+              </fieldset>
+              <div class="row mb-3">
+                <legend class="col-form-label col-sm-2 pt-0">hobby</legend>
+                <div class="col-sm-10" style="display: flex;">
+                  
+                  <div class="form-check">
+                    <input type="checkbox" name="hobby[]" id="hobby" value="reading" <% if(data.hobby.includes('music')) { %> <%= "checked" %> <% } %>/>
+                    <label class="form-check-label" for="gridCheck1">
+                      music
+                    </label>
+                  </div>
+                  
+                  <div class="form-check">
+                    <input type="checkbox" name="hobby[]" id="hobby" value="reading" <% if(data.hobby.includes('dance')) { %> <%= "checked" %> <% } %>/>
+                    <label class="form-check-label" for="gridCheck2">
+                      dance
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input type="checkbox" name="hobby[]" id="hobby" value="reading" <% if(data.hobby.includes('reading')) { %> <%= "checked" %> <% } %>/>
+                   <label class="form-check-label" for="gridCheck2">
+                      reading
+                    </label>
+                  </div>
+                  
+                </div>
+              </div>
+              
+              
+              
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Select city</label>
+                <div class="col-sm-10">
+                  <% var city = ['Surat', 'bhavnagar','Vadodara', 'Navasari']; %>
+                  <select name="city" class="form-select" aria-label="Default select example">
+                    <option value="" selected> select city</option>
+                    <% city.forEach((v, i) => { %>
+                      <option value="<%= v %>" <% if(data.city == v) { %> <%= "selected" %> <% } %>><%= v %></option>
+                    <% }); %>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="row mb-3">
+                  <label for="inputPassword" class="col-sm-2 col-form-label">Textarea</label>
+                  <div class="col-sm-10">
+                    <textarea class="form-control" name="description" style="height: 100px"></textarea>
+                  </div>
+                </div>
+                
+
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Submit Button</label>
+                <div class="col-sm-10">
+                  <button type="submit" name="submit" class="btn btn-primary">Submit Form</button>
+                </div>
+              </div>
+
+            </form><!-- End General Form Elements -->
+
+          </div>
+        </div>
+
+      </div>
+
+     
+    </div>
+  </section>
+
+</main><!-- End #main -->
+
+    <%- include('footer') %>

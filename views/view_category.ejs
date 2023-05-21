@@ -1,0 +1,62 @@
+<%- include('header') %>
+    <main id="main" class="main">
+  
+    <%if(flash.success && flash.success.length>0){%>
+      <div class="alert border-primary"  style="width: fit-content; font-weight: 700;"><%=flash.success%></div>
+    <%}%>
+      <div class="pagetitle">
+        <h1>General Tables</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item">Tables</li>
+            <li class="breadcrumb-item active">General</li>
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+  
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+  
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Default Table</h5>
+  
+                <!-- Default Table -->
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">category</th>
+                      <th scope="col">action</th>
+                     
+                    </tr>
+                  </thead>
+                  <% var no = 1; for(var i of data) { %>
+                    <tr>
+                      <th scope="col"><%= no++ %></th>
+                      <th scope="col"><a href="#"><%= i.category %></a></th>
+                      <th><a href="/category/deletecategory/<%= i.id %>">delete</a> || 
+                        <a href="/category/updatecategory/<%= i.id %>">update</a></th>
+                    </tr>
+                  <% } %>
+                </table>
+                <!-- End Default Table Example -->
+              </div>
+            </div>
+  
+         
+  
+         
+  
+          
+  
+          </div>
+        </div>
+      </section>
+  
+    </main><!-- End #main -->
+  
+
+<%- include('footer') %>
